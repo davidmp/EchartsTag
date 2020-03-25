@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+    <tlibversion>1.1</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>Echarts tag 3D</shortname>
+    <uri>http://www.syscenterlife.com/echarts3D</uri>
+    <info>Echarts Webjars taglib 3D</info>
+
+    <tag>
+        <name>echartBar3D</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Bar3DTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        <attribute>
+            <description>Datos de Eje X</description>
+            <name>dataNameEjeX</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>dataNameEjeY</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>            
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+        
+        <attribute>
+            <name>echart3DColor</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>typeAndIntervalEjesXYZ</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>dimen3DXY</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <description>Los datos deben ser entre 0 a 1</description>
+            <name>lightIntensity</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>double</type>
+        </attribute>
+        
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>styleNormalEmphasis</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>echartBar3DSimple</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Bar3DSimpleTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        
+
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>            
+            <name>visualMapMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>            
+            <name>z3DMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>            
+            <name>grid3DboxWidthDepth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>viewControlAutoRotate</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>        
+        
+        <attribute>
+            <description>Los datos deben ser entre 0 a 1</description>
+            <name>lightIntensity</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>double</type>
+        </attribute>
+        
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>styleNormalEmphasis</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>     
+             
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>          
+    </tag>
+    
+    <tag>
+        <name>echartBar3DStack</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Bar3DStackTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+        
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>styleNormalEmphasis</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+
+        <attribute>            
+            <name>grid3DboxWidthDepth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>viewControlAutoRotate</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>boolean</type>
+        </attribute>        
+        
+        <attribute>
+            <description>Los datos deben ser entre 0 a 1</description>
+            <name>lightIntensity</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>double</type>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>     
+             
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>          
+    </tag>
+    
+    <tag>
+        <name>echartGrid3D</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Grid3DTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+        
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>dataTagX</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+            <name>dataTagY</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>            
+            <name>z3DMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>     
+             
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>          
+        <attribute>
+            <name>color</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>          
+    </tag>
+    
+    <tag>
+        <name>echartLine3D</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Line3DTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        <attribute>
+            <name>visualMapMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        <attribute>
+            <name>seriaLineStyle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>     
+             
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+    </tag>
+    
+    <tag>
+        <name>echartScatter3D</name>
+        <tagclass>pe.com.syscenterlife.echarts.threed.Scatter3DTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts 3D</info>
+        <description>
+            Graficos en 3D
+        </description>
+        
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        <attribute>
+            <name>seriesTypeEchart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+        <attribute>
+            <name>grid3DBoxXYZ</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>            
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>     
+             
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>        
+    </tag>
+
+
+</taglib>

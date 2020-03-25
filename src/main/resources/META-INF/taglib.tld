@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+    <tlibversion>1.1</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>Echarts tag</shortname>
+    <uri>http://www.syscenterlife.com/echarts</uri>
+    <info>Echarts Webjars taglib</info>
+
+    <tag>
+        <name>echartBar</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.bar.BarTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataLabel</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>dataValuesEjeBase</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>classCharts</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>orientationChart</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>echartHeaderScript</name>
+        <tagclass>pe.com.syscenterlife.echarts.ChartHeadTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>nivelFile</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>depencyNames</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    
+    <tag>
+        <name>echartBoxplot</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.BoxplotTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>categoryName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>chartTitle</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>boxPlotOrient</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>legendName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    
+    <tag>
+        <name>echartRadar</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.radar.RadarTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>indicadorData</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>areaStyleOpacy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>lineStyleType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>toolboxOrient</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartRadarO2</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.radar.RadarO2Tag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>indicadorData</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>visualMapColors</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>lineStyleType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartRadarMultip</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.radar.RadarMultiTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValuesM</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>indicadorPositionWH</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>areaStyleOpacy</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>indicadorDataM</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>    
+          
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartPie</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.pie.PieTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+          
+        <attribute>
+            <name>serieRadiusMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+        <attribute>
+            <name>serieCenterXY</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>roseType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>roseTypeValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartFunnel</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.funnel.FunnelTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+          
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+        <attribute>
+            <name>serieCategoryName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>   
+           
+        <attribute>
+            <name>serieLabelPosition</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>serieItemStyleOpacy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>serieLabelFormatter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>serieSort</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartScatter</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.scatter.ScatterTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValuesM</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>chartLegendNames</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+          
+        <attribute>
+            <name>seriesSymbol</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesLabelColor</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesItemStyleOpacy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesLabelShow</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartLine</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.line.LineTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+        <attribute>
+            <name>chartAxisXYCategory</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>   
+           
+        <attribute>
+            <name>echartsOriented</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+             
+        <attribute>
+            <name>seriesMarkPointMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+        <attribute>
+            <name>seriesMarkLineMedia</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>scriptAdd</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartLineArea</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.line.LineAreaTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+        <attribute>
+            <name>ejeDataX</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+        <attribute>
+            <name>legendNameUnit</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>   
+           
+        <attribute>
+            <name>legendNameLocation</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+             
+        <attribute>
+            <name>legendNameInverse</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+             
+        <attribute>
+            <name>serieIndex</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>serieAreaStyleOpacy</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+    <tag>
+        <name>echartBarHistogram</name>
+        <tagclass>pe.com.syscenterlife.echarts.twod.bar.BarHistogramTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <info>Graphic Echarts</info>
+
+        <attribute>
+            <name>dataValues</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>idCharts</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+        
+        <attribute>
+            <name>chartTitle</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+                
+        <attribute>
+            <name>ejeDataX</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>legendDataName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+   
+        <attribute>
+            <name>ejeNameXY</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>   
+
+        <attribute>
+            <name>seriesMarkPointMinMax</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+             
+        <attribute>
+            <name>seriesMarkLineMedia</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> 
+             
+             
+             
+        <attribute>
+            <name>seriesStackName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>  
+            
+        <attribute>
+            <name>echartsOriented</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>      
+     
+
+        <attribute>
+            <name>height</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+    </tag>
+</taglib>
