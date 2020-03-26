@@ -26,3 +26,9 @@ Step 3: Then Add the following dependency.
 	    <version>1.2</version>
 	</dependency>
 ```
+Step 4: Inside the Java Resources folder create a properties file with the following name syscenterlife.properties and inside it place the following content:
+#### syscenterlife.properties
+```properties
+echarts.theme.name=default
+echarts.lang.name=es
+```
