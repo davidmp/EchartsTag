@@ -33,5 +33,5 @@ echarts.theme.name=default
 echarts.lang.name=es
 ```
 
-Step 5: Run your project with a content server, preferably Tomcat version 9 onwards and place in your browser http://localhost:80/EchartsJsp/echartsdoc.jsp and the documentation on how to use it will appear.
-	![](LogoEchartsTag.png)
+Step 5: Run your project with a content server, preferably Tomcat version 9 onwards and place in your browser http://localhost:8080/EchartsJsp/echartsdoc.jsp and the documentation on how to use it will appear.
+	![](PaginaDocumentacion.png)
