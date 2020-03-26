@@ -99,7 +99,7 @@ public class BarTag extends BodyTagSupport {
                     + "                    tooltip : {\n"
                     + "                        trigger: 'axis',\n"
                     + "                        axisPointer : {            // \n"
-                    + "                            type : 'shadow'        // 'line' | 'shadow'"
+                    + "                            type : 'shadow'        // 'line' | 'shadow'\n"
                             + "}},\n"
                     + "                    legend: {\n"
                     + "                        data:" + dataLabelx + "},\n"

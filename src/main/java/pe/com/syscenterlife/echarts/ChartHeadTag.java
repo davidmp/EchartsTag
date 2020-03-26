@@ -41,22 +41,22 @@ public class ChartHeadTag extends TagSupport {
         try {
             if(!readProp.getPathFileDefault().getProperty(NAMETHEME).equals("") && readProp.getPathFileDefault().getProperty(NAMETHEME)!=null){
             theme=readProp.getPathFileDefault().getProperty(NAMETHEME);
-            ((HttpServletRequest)pageContextR.getRequest()).getSession().setAttribute("echartstheme", theme);
+            ((HttpServletRequest)this.pageContext.getRequest()).getSession().setAttribute("echartstheme", theme);
             } 
         } catch (Exception e) {
-            logger.info("No existe el nombre de variable de Properties "+e.getMessage());
+            logger.info("No existe el nombre de variable de Properties thema:"+e.getMessage());
         }
     }
     private void captureLang(){
         try {
             if(!readProp.getPathFileDefault().getProperty(NAMELANG).equals("") && readProp.getPathFileDefault().getProperty(NAMELANG)!=null){
             lang=readProp.getPathFileDefault().getProperty(NAMELANG);
-            ((HttpServletRequest)pageContextR.getRequest()).getSession().setAttribute("echartslang", lang);
+            ((HttpServletRequest)this.pageContext.getRequest()).getSession().setAttribute("echartslang", lang);
             } else if(readProp.getPathFileDefault().getProperty(NAMELANG).equals("")){
             lang="";
             }
         } catch (Exception e) {            
-            logger.info("No existe el nombre de variable de Properties "+e.getMessage());
+            logger.info("No existe el nombre de variable de Properties Idioma: "+e.getMessage());
         }
     }
     
@@ -126,8 +126,8 @@ public class ChartHeadTag extends TagSupport {
                 + "-->");
         try {
 
-            String urlcontex = ((HttpServletRequest) pageContextR.getRequest()).getContextPath();
-            pageContextR.getOut().append(sb); 
+            String urlcontex = ((HttpServletRequest) this.pageContext.getRequest()).getContextPath();
+            this.pageContext.getOut().append(sb); 
             
 
             if(lang.charAt(0)!='-'){
@@ -146,7 +146,7 @@ public class ChartHeadTag extends TagSupport {
                     
                     + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />");
             
-            pageContextR.getOut().append(scripts); 
+            this.pageContext.getOut().append(scripts); 
 
             StringBuilder scriptsAditionals = new StringBuilder();
             if(depencyNames!=null){
@@ -159,7 +159,7 @@ public class ChartHeadTag extends TagSupport {
                     }
                 }
             }
-            pageContextR.getOut().append(scriptsAditionals); 
+            this.pageContext.getOut().append(scriptsAditionals); 
             
         } catch (IOException e) {
             logger.info("Error en generar llamar librerias de JavaScript: "+e.getMessage());
