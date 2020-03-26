@@ -31,6 +31,7 @@ public class ChartHeadTag extends TagSupport {
     private transient ReadProperties readProp;
     private transient PageContext pageContextR;
     public ChartHeadTag() {
+        pageContextR=this.pageContext;
         readProp = new ReadProperties("syscenterlife.properties");
     }
     public ChartHeadTag(PageContext pageContextxx) {
@@ -61,7 +62,8 @@ public class ChartHeadTag extends TagSupport {
     
     
     @Override
-    public int doStartTag() throws JspException {                
+    public int doStartTag() throws JspException {
+        
         captureTheme();   
         captureLang();
         StringBuilder sb = new StringBuilder();
