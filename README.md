@@ -1,5 +1,7 @@
 # EchartsTag
-Es un Proyecto de Gráficos Echarts para Java
+It is a Project of Echarts for Java
+
+![](LogoEchartsTag.png)
 
 ## Getting Started
 
