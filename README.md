@@ -37,3 +37,5 @@ Step 5: Run your project with a content server, preferably Tomcat version 9 onwa
 
 ![](PaginaDocumentacion.png)
 
+
+If you want some examples you can see them in the following Github repository [Examples of Echart Projects](https://github.com/davidmp/)
