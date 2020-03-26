@@ -17,3 +17,12 @@ Step 2: Inside the pom.xml file put the following code that refers to the reposi
             </repository>
     </repositories>
 ```
+Step 3: Then Add the following dependency.
+
+```xml
+	<dependency>
+	    <groupId>com.github.davidmp</groupId>
+	    <artifactId>EchartsTag</artifactId>
+	    <version>1.2</version>
+	</dependency>
+```
