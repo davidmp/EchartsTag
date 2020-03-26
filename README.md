@@ -8,7 +8,7 @@ It is a Project of Echarts for Java
 Step 1: To test you can create any Maven type project in Java.
 
 Step 2: Inside the pom.xml file put the following code that refers to the repository from where the library will be downloaded.
-#### Code
+#### >pom.xml
 ```xml
     <repositories>
             <repository>
