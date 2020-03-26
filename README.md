@@ -32,3 +32,6 @@ Step 4: Inside the Java Resources folder create a properties file with the follo
 echarts.theme.name=default
 echarts.lang.name=es
 ```
+
+Step 5: Run your project with a content server, preferably Tomcat version 9 onwards and place in your browser http://localhost:<<port>>/echartsdoc.jsp and the documentation on how to use it will appear.
+	![](LogoEchartsTag.png)
