@@ -3,15 +3,17 @@ It is a Project of Echarts for Java
 
 ![](LogoEchartsTag.png)
 
-## Getting Started
+## Steps to create a project
 
-This project is a starting point for a Flutter application.
+Step 1: To test you can create any Maven type project in Java.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Step 2: Inside the pom.xml file put the following code that refers to the repository from where the library will be downloaded.
+#### Code
+```xml
+    <repositories>
+            <repository>
+                <id>jitpack.io</id>
+                <url>https://jitpack.io</url>
+            </repository>
+    </repositories>
+```
