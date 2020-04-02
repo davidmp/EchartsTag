@@ -2,6 +2,7 @@
 package pe.com.syscenterlife.echarts.threed;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
@@ -80,7 +81,15 @@ public class Scatter3DTag  extends BodyTagSupport{
             pageContextR.getOut().append(chartImage); 
 
         } catch (IOException e) {
-            logger.info("Error en generar grafico Scatter3D: "+e.getMessage());
+            logger.log(Level.INFO, "Error en generar grafico Scatter3D: {0}", e.getMessage());        
+        }catch (ArrayIndexOutOfBoundsException e){
+            logger.log(Level.INFO, "Error al ingresar datos de entrada en tipos arrays en los Taglibs Scatter3D: {0}", e.getMessage());        
+        }catch(NumberFormatException e){
+            logger.log(Level.INFO, "Error al ingresar datos en uno de los attributos cuando se desea que sea numerico Scatter3D: {0}", e.getMessage());
+        }catch(IllegalArgumentException e){
+            logger.log(Level.INFO, "Error al ingresar datos para generar grafico Echarts con Taglib Scatter3D: {0}", e.getMessage());
+        }catch (RuntimeException e){
+            logger.log(Level.INFO, "Error en tiempo de ejecuci\u00f3n al usar Taglibs Scatter3D: {0}", e.getMessage());
         }
         return SKIP_BODY; //PUEDE SER 0
     }   

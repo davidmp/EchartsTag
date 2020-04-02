@@ -1,6 +1,7 @@
 package pe.com.syscenterlife.echarts.twod.radar;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -129,7 +130,15 @@ public class RadarMultiTag extends BodyTagSupport{
             pageContextR.getOut().append(chartImage);            
 
         } catch (IOException e) {
-            logger.info("Error en generar grafico RadarMultiple: "+e.getMessage());
+            logger.log(Level.INFO, "Error en generar grafico RadarMultiple: {0}", e.getMessage());        
+        }catch (ArrayIndexOutOfBoundsException e){
+            logger.log(Level.INFO, "Error al ingresar datos de entrada en tipos arrays en los Taglibs RadarMultiple: {0}", e.getMessage());        
+        }catch(NumberFormatException e){
+            logger.log(Level.INFO, "Error al ingresar datos en uno de los attributos cuando se desea que sea numerico RadarMultiple: {0}", e.getMessage());
+        }catch(IllegalArgumentException e){
+            logger.log(Level.INFO, "Error al ingresar datos para generar grafico Echarts con Taglib RadarMultiple: {0}", e.getMessage());
+        }catch (RuntimeException e){
+            logger.log(Level.INFO, "Error en tiempo de ejecuci\u00f3n al usar Taglibs RadarMultiple: {0}", e.getMessage());
         }
         return SKIP_BODY; //PUEDE SER 0
     }  
