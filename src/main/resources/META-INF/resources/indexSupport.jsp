@@ -53,18 +53,28 @@
     </nav>
 
     <main role="main" class="container">
+     
+
 
         <div class="content">
         <div class="jumbotron">
-          <h1>EchartsTag</h1>
+          <h1>Supported by</h1>
           <p>
-        EchartsTag is a visualization tool for Java in a web environment based on open source ECharts, which can run smoothly on PC. It is compatible with most modern web browsers, for example IE9/10/11, Chrome, Firefox, Safari, etc. EchartsTag features Taglibs to create intuitive, interactive graphics quickly.      
+        David Mamani Pari
+Comprehensive support for OpenJDK ™, for any company.
+Contact the mail: mamanipari@gmail.com
+WhatsApp or Cell: 951782520
           </p>
         </div>            
         
         </div>
 
 
+
+
+
+
+        
  
 	  
       

@@ -101,8 +101,28 @@ public class BarTag extends BodyTagSupport {
                     + "                        trigger: 'axis',\n"
                     + "                        axisPointer : {            // \n"
                     + "                            type : 'shadow'        // 'line' | 'shadow'\n"
-                            + "}},\n"
-                    + "                    legend: {\n"
+                            + "}},\n"+
+                    "        toolbox: {\n" +
+                    "            orient: 'vertical',\n" +
+                    "            left: 'right',\n" +
+                    "            top: 'center',\n" +
+                    "            feature: {\n" +
+                    "                magicType: {\n" +
+                    "                    type: ['line', 'bar'] },\n" +
+                    "                dataView: {},\n" +
+                    "                saveAsImage: {\n" +
+                    "                    pixelRatio: 2\n" +
+                    "                },\n" +
+                    "                restore: {}\n" +
+                    "            },\n" +
+                    "\n" +
+                    "            iconStyle: {\n" +
+                    "                emphasis: {\n" +
+                    "                    textPosition: 'top'                                \n" +
+                    "                } }\n" +
+                    "        },\n" +                            
+                            
+                    "                    legend: {\n"
                     + "                        data:" + dataLabelx + "},\n"
                     + "                    grid: {\n"
                     + "                        left: '3%',\n"
