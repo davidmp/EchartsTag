@@ -34,7 +34,7 @@ public class FunnelTag extends BodyTagSupport {
     @Getter @Setter
     double[] serieItemStyleOpacy={0.7, 0.5};
     @Getter @Setter
-    String[] serieLabelFormatter={"{b}", "{c}%"};
+    String[] serieLabelFormatter={"{b}", "{c}"};
     @Getter @Setter
     String[] serieSort={"descending", "descending"};/*ascending,descending*/
     
@@ -73,7 +73,7 @@ public class FunnelTag extends BodyTagSupport {
                     "        x:'center',\n" +
                     "        y:'top'\n" +
                     "        },\n" +
-                    "        tooltip: {trigger: 'item',formatter: \"{a} <br/>{b} : {c}%\"},\n" +
+                    "        tooltip: {trigger: 'item',formatter: \"{a} <br/>{b} :{c} - {d}%\"},\n" +
                     "        toolbox: {feature: {dataView: {readOnly: false},restore: {},saveAsImage: {}}},\n" +
                     "        legend: {right: 'center',bottom: 0, orient: 'horizontal', \n" +
                     "                data: " + legendDataNameX + "\n" +

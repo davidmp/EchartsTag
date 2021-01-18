@@ -19,7 +19,6 @@ import static junit.framework.TestCase.assertEquals;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.mockito.Mockito;
 import pe.com.syscenterlife.echarts.util.EchartsUtilTag;
 

@@ -34,6 +34,8 @@ public class PieTag extends BodyTagSupport {
     @Getter @Setter
     String roseTypeValue="radius";/*radius, area*/
     @Getter @Setter
+    String pocentTypeValue="%";/*%, #*/
+    @Getter @Setter
     public String height = "460px";
     @Getter @Setter
     public String width = "760px";
@@ -54,6 +56,13 @@ public class PieTag extends BodyTagSupport {
         theme=(String)((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme");
         JSONArray serieRadiusMinMaxX=new JSONArray(serieRadiusMinMax);
         JSONArray serieCenterXYX=new JSONArray(serieCenterXY);
+        String porcentorvalue="label: {formatter:'{b}: {d}%'\n" +
+                        "},\n" ;
+        if(pocentTypeValue.equals("#")){
+        porcentorvalue="label: {formatter:'{b}: {c}'\n" +
+                        "},\n" ;
+        }         
+        
         try {       
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
@@ -100,6 +109,7 @@ public class PieTag extends BodyTagSupport {
             "        series: [{\n" +
             "            name: '"+chartTitle+"',\n" +
             "            type: 'pie',\n" +
+            porcentorvalue +
             "            radius: [serieRadiusMinMaxX[0], serieRadiusMinMaxX[1]],/*20*/\n" +
             "            center: [serieCenterXYX[0], serieCenterXYX[1]],\n");            
             if(roseType){
