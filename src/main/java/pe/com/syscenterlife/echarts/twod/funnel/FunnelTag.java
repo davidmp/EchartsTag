@@ -73,7 +73,7 @@ public class FunnelTag extends BodyTagSupport {
                     "        x:'center',\n" +
                     "        y:'top'\n" +
                     "        },\n" +
-                    "        tooltip: {trigger: 'item',formatter: \"{a} <br/>{b} :{c} - {d}%\"},\n" +
+                    "        tooltip: {trigger: 'item',formatter: \"{a} <br/>{b} :{c} - {d}%\"}, \n" +
                     "        toolbox: {feature: {dataView: {readOnly: false},restore: {},saveAsImage: {}}},\n" +
                     "        legend: {right: 'center',bottom: 0, orient: 'horizontal', \n" +
                     "                data: " + legendDataNameX + "\n" +
