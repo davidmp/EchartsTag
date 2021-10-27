@@ -39,3 +39,21 @@ Step 5: Run your project with a content server, preferably Tomcat version 9 onwa
 
 
 If you want some examples you can see them in the following Github repository [Examples of Echart Projects](https://github.com/davidmp/ExampleFrameworkEcharts)
+
+## Citación
+
+[EchartsTag para Generación de Charts usando Taglib](https://revistas.ulima.edu.pe/index.php/Interfases/article/view/5394)
+
+```BibTeX
+@article{Mamani-Pari_Escobedo-Quispe_2021, 
+title={EchartsTag para Generación de Charts usando Taglib}, 
+url={https://revistas.ulima.edu.pe/index.php/Interfases/article/view/5394}, 
+DOI={10.26439/interfases2021.n014.5394}, 
+abstractNote={&lt;p&gt;Existen muchas herramientas para desarrollar aplicaciones en Java, pero existen pocas alternativas para Framework o bibliotecas especializadas para mostrar gráficos (Charts) en entornos web. Aunque la mayoría son para entornos de escritorio, las librerías PrimeFaces y ChartistJSF son una alternativa para la web, pero están orientadas a proyectos basados en Java Server Faces. En este sentido, muchos proyectos prefieren utilizar principalmente una biblioteca de gráficos integrada con JavaScript, lo que implica una curva de aprendizaje adicional y requiere más tiempo en el desarrollo de aplicaciones. Por lo tanto, es necesario tener una biblioteca o marco de visualización de gráficos único para aplicaciones Java en el entorno web. Por lo tanto, en este artículo se propone construir una herramienta que ayude a desarrollar visualizaciones gráficas en proyectos web Java utilizando los conceptos de TagLibs y Webjars. La herramienta propuesta se llama EchartsTag, y fue construida siguiendo la metodología XP y validada el producto con SonarQube y un grupo de profesionales expertos en desarrollo de proyectos Java. EchartsTag está disponible en GitHub, por lo que puede ser utilizado por cualquier desarrollador de la comunidad de Java u organizaciones que trabajen con tecnología Java. Finalmente, los resultados de rendimiento de EchartsTag se demuestran al comparar con otras herramientas alternativas, logrando un tiempo promedio de 14.17 minutos en tiempo de desarrollo y ocupando el tercer lugar en tiempo promedio de visualización que es 3.5ms después de Chartjs y HighChats. Además, ocupa el primer lugar en la evaluación de otros criterios para el desarrollo web java con herramientas de visualización de gráficos.&lt;/p&#38;gt;}, 
+number={014}, 
+journal={Interfases}, 
+author={Mamani-Pari, David and Escobedo-Quispe, Richart Smith}, 
+year={2021}, 
+month={oct.}, 
+pages={e5394} }
+```
