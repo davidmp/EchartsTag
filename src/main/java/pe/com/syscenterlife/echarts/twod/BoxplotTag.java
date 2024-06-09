@@ -12,51 +12,109 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
- *
- * @author davidmp
+ * La clase {@code BoxplotTag} genera un gráfico de caja (boxplot) utilizando ECharts en una página JSP.
+ * Esta clase permite la configuración de datos, nombre de categorías, título del gráfico, orientación del boxplot,
+ * y otras propiedades del gráfico.
+ * <p>
+ * Ejemplo de uso en JSP:
+ * </p>
+ * <pre>
+ * {@code
+ * <custom:boxplotTag idCharts="boxplotChart" dataValues="..." ... />
+ * }
+ * </pre>
+ * 
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
+
 public class BoxplotTag extends BodyTagSupport {
+    /**
+     * Logger para registrar eventos y errores.
+     */    
     protected static final Logger logger = Logger.getLogger(BoxplotTag.class.getName());
-    
+    /**
+     * Datos del gráfico en formato array de objetos.
+     */    
     @Getter @Setter
     private transient Object[] dataValues;
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */    
     @Getter @Setter
     String idCharts; 
+    /**
+     * Nombre de la categoría de datos.
+     */    
     @Getter @Setter
     String categoryName="Datos"; 
+    /**
+     * Título del gráfico.
+     */    
     @Getter @Setter
     String chartTitle="Grafico de Resultados"; 
+    /**
+     * Orientación del gráfico de caja (horizontal o vertical).
+     */    
     @Getter @Setter
     String boxPlotOrient="horizontal"; /*vertical,horizontal*/ 
+    /**
+     * Nombres de las leyendas en formato JSON.
+     */    
     @Getter @Setter
     private transient JSONArray legendName;
+    /**
+     * Altura del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String height = "460px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String width = "700px";    
-    
-    
-    
+    /**
+     * Indicador de dependencia del script.
+     */        
     boolean scriptDependency=false;
+    /**
+     * Contexto de la página JSP.
+     */    
     private transient PageContext pageContextR;
-
+    /**
+     * Constructor por defecto.
+     */
     public BoxplotTag() {
     
     }
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */    
     public BoxplotTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de caja en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP.
         String theme;
         theme=(String)((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme");
-        
+        // Convierte los datos a formato JSON.
         JSONArray dataM=new JSONArray(dataValues);
 
         try {
+            // Genera el código HTML y JavaScript para el gráfico.
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
                         "<div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 8px;\"></div>\n" +
@@ -152,7 +210,7 @@ public class BoxplotTag extends BodyTagSupport {
                         "    });}\n" +
                         "update('" + boxPlotOrient + "');/*vertical,horizontal*/\n" +
                         "</script>");
-
+                        // Añade el gráfico al contexto de la página.
             pageContextR.getOut().append(chartImage); 
 
         } catch (IOException e) {
@@ -168,7 +226,12 @@ public class BoxplotTag extends BodyTagSupport {
         }
         return SKIP_BODY; //PUEDE SER 0
     }  
-    
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */    
     @Override
     public int doStartTag() throws JspException {        
         pageContextR=this.pageContext;        

@@ -12,65 +12,130 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
+ * La clase {@code BarHistogramTag} proporciona una etiqueta personalizada para generar gráficos de histograma de barras utilizando la biblioteca ECharts en páginas JSP.
+ * Esta etiqueta permite configurar datos, título del gráfico, leyendas, ejes, opciones de estilo y otras propiedades del gráfico.
  *
- * @author davidmp
+ * Ejemplo de uso en JSP:
+ * {@code
+ * <custom:barHistogramTag idCharts="barHistogramChart" dataValues="..." ... />
+ * }
+ *
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
+
 public class BarHistogramTag extends BodyTagSupport  {
+    /**
+     * Logger para registrar eventos y errores.
+     */    
     protected static final Logger logger = Logger.getLogger(BarHistogramTag.class.getName());
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */    
     @Getter @Setter
     String idCharts; 
+    /**
+     * Datos del gráfico en formato array de objetos.
+     */    
     @Getter @Setter
     private transient Object[] dataValues;
+    /**
+     * Título del gráfico.
+     */    
     @Getter @Setter
     String chartTitle;
+    /**
+     * Nombres de las leyendas.
+     */    
     @Getter @Setter
     String[] legendDataName;
+    /**
+     * Datos del eje X.
+     */    
     @Getter @Setter
     String[] ejeDataX;
+    /**
+     * Nombres de los ejes X y Y.
+     */    
     @Getter @Setter
-    String[] ejeNameXY={"Eje X","Eje Y"};           
+    String[] ejeNameXY={"Eje X","Eje Y"}; 
+    /**
+     * Marcadores de punto mínimo y máximo en las series.
+     */    
     @Getter @Setter
     boolean[] seriesMarkPointMinMax ={false,false,false,false};
+    /**
+     * Marcadores de línea de promedio en las series.
+     */    
     @Getter @Setter
-    boolean[] seriesMarkLineMedia ={false,false,false,false};            
+    boolean[] seriesMarkLineMedia ={false,false,false,false}; 
+    /**
+     * Nombres de las series para agrupación.
+     */    
     @Getter @Setter
-    String[] seriesStackName ={"one","one","two","two"};            
+    String[] seriesStackName ={"one","one","two","two"}; 
+    /**
+     * Orientación del gráfico de histograma. Puede ser "horizontal" o "vertical"
+     */
     @Getter @Setter
     String echartsOriented="horizontal";
-    
+    /**
+     * Altura del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String height = "500px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String width = "800px";
     
-    
-    
+    /**
+     * Contexto de la página JSP.
+     */
     private transient PageContext pageContextF;
     
-
+    /**
+     * Constructor por defecto.
+     */
     public BarHistogramTag() {    
     }    
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */    
     public BarHistogramTag(PageContext pageContextxx) {
      pageContextF=pageContextxx;
     }    
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de histograma de barras en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP.
         String theme;
         theme=(String)((HttpServletRequest)this.pageContext.getRequest()).getSession().getAttribute("echartstheme");
-
+        // Convierte los datos a formato JSON.
         JSONArray ejeDataXX=new JSONArray(ejeDataX);
         JSONArray dataValuesX=new JSONArray(dataValues);
         JSONArray legendDataNameX=new JSONArray(legendDataName);
+         // Define los nombres de los ejes X e Y según la orientación del gráfico.
         String x;
         String y;
         if(echartsOriented.equals("horizontal")){
         x="xAxis"; y="yAxis";
         }else{ x="yAxis"; y="xAxis"; }        
         
-        try {            
+        try {
+            // Genera el código HTML y JavaScript para el gráfico de histograma de barras.
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
                     "    <div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 8px;\"></div>\n" +
@@ -192,7 +257,7 @@ public class BarHistogramTag extends BodyTagSupport  {
                     "    });\n" +
                     "    window.onresize = chart.resize;\n" +
                     "    </script>");
-
+                    // Añade el gráfico al contexto de la página.
              pageContextF.getOut().append(chartImage);
 
         } catch (IOException e) {
@@ -208,7 +273,12 @@ public class BarHistogramTag extends BodyTagSupport  {
         }
         return SKIP_BODY; //PUEDE SER 0
     } 
-
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */ 
     @Override
     public int doStartTag() throws JspException {        
         pageContextF=this.pageContext;        

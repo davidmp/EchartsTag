@@ -12,31 +12,87 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
- * @author davidmp
+ * {@code ChartHeadTag} es una clase de etiqueta personalizada para JSP que se 
+ * encarga de agregar temas y configuraciones de lenguaje a los scripts de ECharts.
+ * La clase extiende {@link TagSupport} y sobreescribe el método {@link #doStartTag()} 
+ * para insertar el contenido HTML/JavaScript necesario.
+ * <p>
+ * Esta etiqueta lee las propiedades desde un archivo configurado para definir el tema y 
+ * el lenguaje para los scripts de ECharts, y agrega los enlaces y scripts correspondientes 
+ * al contexto de la página.
+ * </p>
+ * <p>
+ * Uso típico en un archivo JSP:
+ * </p>
+ * <pre>
+ * {@code
+ * <taglib prefix="custom" uri="http://example.com/tags" />
+ * <custom:chartHeadTag />
+ * }
+ * </pre>
+ * @author davidmp et al.
+ * @see TagSupport
+ * @since 1.0
  */
 public class ChartHeadTag extends TagSupport {
-
+    /**
+     * Nivel de archivo, usado para determinar la ubicación de recursos.
+     */
     @Getter
     @Setter
     String nivelFile = "0";
+    /**
+     * Nombres de dependencias adicionales a incluir como scripts.
+     */     
     @Getter
     @Setter    
     private transient Object[] depencyNames;
+    /**
+     * Tema actual utilizado para ECharts.
+     */       
     String theme="default";
+    /**
+     * Idioma actual utilizado para ECharts.
+     */      
     String lang="es";
+    /**
+     * Nombre de la propiedad del tema en el archivo de propiedades.
+     */      
     private  static  final String NAMETHEME="echarts.theme.name";
+    /**
+     * Nombre de la propiedad del idioma en el archivo de propiedades.
+     */     
     private  static  final String NAMELANG="echarts.lang.name";
+    /**
+     * Logger para registrar información y errores.
+     */     
     protected  static  final Logger logger = Logger.getLogger(ChartHeadTag.class.getName());
+    /**
+     * Instancia de lectura de propiedades.
+     */       
     private transient ReadProperties readProp;
+    /**
+     * Contexto de la página JSP.
+     */     
     private transient PageContext pageContextR;
+   /**
+     * Constructor sin parámetros que inicializa {@link #readProp} y {@link #pageContextR}.
+     */     
     public ChartHeadTag() {
         pageContextR=this.pageContext;
         readProp = new ReadProperties("syscenterlife.properties");
     }
+    /**
+     * Constructor con contexto de página. Inicializa {@link #pageContextR}.
+     *
+     * @param pageContextxx el contexto de la página JSP.
+     */     
     public ChartHeadTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }    
+    /**
+     * Captura el tema configurado desde el archivo de propiedades.
+     */       
     private void captureTheme(){
         try {
             if(!readProp.getPathFileDefault().getProperty(NAMETHEME).equals("") && readProp.getPathFileDefault().getProperty(NAMETHEME)!=null){
@@ -47,6 +103,9 @@ public class ChartHeadTag extends TagSupport {
             logger.info("No existe el nombre de variable de Properties thema:"+e.getMessage());
         }
     }
+    /**
+     * Captura el idioma configurado desde el archivo de propiedades.
+     */     
     private void captureLang(){
         try {
             if(!readProp.getPathFileDefault().getProperty(NAMELANG).equals("") && readProp.getPathFileDefault().getProperty(NAMELANG)!=null){
@@ -60,12 +119,23 @@ public class ChartHeadTag extends TagSupport {
         }
     }
     
-    
+    /**
+     * Genera y agrega las etiquetas HTML/JavaScript necesarias para ECharts
+     * al inicio del cuerpo de la etiqueta JSP.
+     * <p>
+     * Este método se encarga de insertar los enlaces a los estilos y scripts
+     * necesarios, incluyendo dependencias adicionales basadas en {@link #depencyNames}.
+     * </p>
+     *
+     * 
+     * @throws JspException si ocurre un error durante la escritura del contenido.
+     */     
     @Override
     public int doStartTag() throws JspException {
         
         captureTheme();   
         captureLang();
+        // Construir comentarios de licencia  
         StringBuilder sb = new StringBuilder();
         sb.append("<!--\n"
                 + "Copyright (C) 2019 David Mamani Pari - SyscenterLife (Cel. 951782520 - \n"
@@ -133,7 +203,7 @@ public class ChartHeadTag extends TagSupport {
             if(lang.charAt(0)!='-'){
             lang="-"+lang;
             }
-            
+            // Construir y agregar enlaces de scripts y estilos
             StringBuilder scripts = new StringBuilder();
             scripts.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + urlcontex + "/webjars/syscenterlife/echarts/1.1.0/css/style.css\" />\n"
                     + "<!--[if lt IE 9]> \n"
@@ -147,7 +217,7 @@ public class ChartHeadTag extends TagSupport {
                     + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />");
             
             this.pageContext.getOut().append(scripts); 
-
+            // Agregar dependencias adicionales
             StringBuilder scriptsAditionals = new StringBuilder();
             if(depencyNames!=null){
                 if(depencyNames.length>0){

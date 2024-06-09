@@ -12,53 +12,108 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
+ * La clase {@code ScatterTag} proporciona una etiqueta personalizada para generar gráficos de dispersión
+ * utilizando la biblioteca ECharts en páginas JSP.
+ * Esta etiqueta permite configurar datos, leyendas, símbolos, estilos de etiquetas y otras propiedades del gráfico de dispersión.
  *
- * @author davidmp
+ * Ejemplo de uso en JSP:
+ * {@code
+ * <custom:scatterTag idCharts="scatterChart" dataValuesM="..." chartLegendNames="..." ... />
+ * }
+ *
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
+
 public class ScatterTag extends BodyTagSupport{
+    /**
+     * Logger para registrar eventos y errores.
+     */
     protected static final Logger logger = Logger.getLogger(ScatterTag.class.getName());
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */
     @Getter @Setter
     String idCharts; 
+    /**
+     * Datos para el gráfico de dispersión.
+     */
     @Getter @Setter
     private transient Object[] dataValuesM;
+    /**
+     * Nombres de las leyendas del gráfico.
+     */
     @Getter @Setter
     String[]  chartLegendNames;
+    /**
+     * Símbolos utilizados en el gráfico de dispersión. Ejem. 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'.
+     */
     @Getter @Setter
     String[] seriesSymbol={"circle","rect","triangle"};//'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
+    /**
+     * Colores de las etiquetas del gráfico de dispersión. "black","red","blue"
+     */
     @Getter @Setter
     String[] seriesLabelColor={"black","red","blue"};
+    /**
+     * Opacidad de los estilos de los elementos del gráfico de dispersión.
+     */
     @Getter @Setter
     double[] seriesItemStyleOpacy={0.8,0.8,0.8};
+    /**
+     * Indica si se muestran las etiquetas en el gráfico de dispersión.
+     */
     @Getter @Setter
     boolean[] seriesLabelShow={false,true,false};
-    
+    /**
+     * Altura del contenedor del gráfico.
+     */
     @Getter @Setter
     public String height = "460px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */
     @Getter @Setter
     public String width = "800px";
     
-    
- 
-    
+    /**
+     * Contexto de la página JSP.
+     */
     private transient PageContext pageContextR;
-
+    /**
+     * Constructor por defecto.
+     */
     public ScatterTag() {
     }
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */
     public ScatterTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de dispersión en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP.
         String theme;
         theme=(String)((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme");
-
+        // Convierte los nombres de las leyendas a formato JSON.
         JSONArray chartLegendNamesX=new JSONArray(chartLegendNames);
+        // Convierte los datos del gráfico de dispersión a formato JSON.
         JSONArray dataValuesMX= new JSONArray(dataValuesM);
         try {
-
+            // Genera el código HTML y JavaScript para el gráfico de dispersión.
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
                     "<div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 8px;\"></div>\n" +
@@ -84,7 +139,7 @@ public class ScatterTag extends BodyTagSupport{
                     "                        {type: 'inside',xAxisIndex: [0],start: 10,end: 70},\n" +
                     "                        {type: 'inside',yAxisIndex: [0],start: 0,end: 20} ],\n" +
                     "            series: [\n");
-            
+                    // Agrega las series al gráfico.
                     for (int i = 0; i < dataValuesM.length; i++) {
             
                     chartImage.append(""+
@@ -113,7 +168,7 @@ public class ScatterTag extends BodyTagSupport{
                     "            console.log(params.data);\n" +
                     "        });\n" +
                     "</script>");
-
+                    // Añade el gráfico al contexto de la página.
             pageContextR.getOut().append(chartImage); 
 
         } catch (IOException e) {
@@ -129,7 +184,12 @@ public class ScatterTag extends BodyTagSupport{
         }
         return SKIP_BODY; //PUEDE SER 0
     }     
-    
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */  
     @Override
     public int doStartTag() throws JspException {        
         pageContextR=this.pageContext;        

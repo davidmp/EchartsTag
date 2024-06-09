@@ -12,61 +12,127 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
+ * La clase {@code LineAreaTag} proporciona una etiqueta personalizada para generar gráficos de líneas o áreas utilizando la biblioteca ECharts en páginas JSP.
+ * Esta etiqueta permite configurar datos, títulos, leyendas, estilos y otras propiedades del gráfico de líneas o áreas.
+ *
+ * Ejemplo de uso en JSP:
+ * {@code
+ * <custom:lineAreaTag idCharts="lineAreaChart" dataValues="..." chartTitle="..." ... />
+ * }
  *
  * @author davidmp
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
+
 public class LineAreaTag extends BodyTagSupport{
+    /**
+     * Logger para registrar eventos y errores.
+     */    
     protected static final Logger logger = Logger.getLogger(LineAreaTag.class.getName());
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */    
     @Getter @Setter
     String idCharts; 
+    /**
+     * Datos para el gráfico de líneas o áreas.
+     */    
     @Getter @Setter
     private transient Object[] dataValues;
+    /**
+     * Título del gráfico.
+     */    
     @Getter @Setter
     String chartTitle;
+    /**
+     * Datos para el eje X del gráfico.
+     */    
     @Getter @Setter
     private transient Object[] ejeDataX;
+    /**
+     * Nombres de las leyendas del gráfico.
+     */    
     @Getter @Setter
     String[] legendDataName;
+    /**
+     * Nombres de las unidades de las leyendas.
+     */    
     @Getter @Setter
     String[] legendNameUnit;
+    /**
+     * Posiciones de las leyendas en el gráfico.
+     */    
     @Getter @Setter
     String[] legendNameLocation;
+    /**
+     * Indica si las leyendas deben mostrarse en orden inverso.
+     */    
     @Getter @Setter
     boolean[] legendNameInverse;
+    /**
+     * Índices de las series en el gráfico.
+     */    
     @Getter @Setter
     int[] serieIndex;
+    /**
+     * Opacidad del área de las series.
+     */    
     @Getter @Setter
     double[] serieAreaStyleOpacy={0.8, 0.8};    
-    
+
+    /**
+     * Altura del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String height = "500px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */    
     @Getter @Setter
     public String width = "760px";
     
- 
-    
-    
+    /**
+     * Contexto de la página JSP.
+     */
     private transient PageContext pageContextR;
-
+    /**
+     * Constructor por defecto.
+     */
     public LineAreaTag() {    
     }
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */    
     public LineAreaTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de líneas o áreas en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP.
         String theme;
         theme=(String)((HttpServletRequest)this.pageContextR.getRequest()).getSession().getAttribute("echartstheme");
-
+        // Convierte los datos del eje X a formato JSON.
         JSONArray ejeDataXX=new JSONArray(ejeDataX);
+        // Convierte los valores de datos a formato JSON.
         JSONArray dataValuesX=new JSONArray(dataValues);
+        // Convierte los nombres de las leyendas a formato JSON.
         JSONArray legendDataNameX=new JSONArray(legendDataName);
      
         
-        try {     
+        try {   
+             // Genera el código HTML y JavaScript para el gráfico de líneas o áreas.
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
                     "        <div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 8px;\"></div>\n" +
@@ -121,7 +187,7 @@ public class LineAreaTag extends BodyTagSupport{
                     "            ]\n" +
                     "        });\n" +
                     "        </script>");
-
+                    // Añade el gráfico al contexto de la página.
             pageContextR.getOut().append(chartImage); 
 
         } catch (IOException e) {
@@ -137,7 +203,12 @@ public class LineAreaTag extends BodyTagSupport{
         }
         return SKIP_BODY; //PUEDE SER 0
     }
-    
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */      
     @Override
     public int doStartTag() throws JspException {        
         pageContextR=this.pageContext;        

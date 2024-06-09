@@ -11,49 +11,108 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
+ * La clase {@code RadarMultiTag} proporciona una etiqueta personalizada para generar gráficos de radar múltiples
+ * utilizando la biblioteca ECharts en páginas JSP.
+ * Esta etiqueta permite configurar datos, leyendas, estilos de área y otras propiedades del gráfico de radar múltiple.
  *
- * @author davidmp
+ * Ejemplo de uso en JSP:
+ * {@code
+ * <custom:radarMultiTag idCharts="radarChart" dataValuesM="..." indicadorPositionWH="..." indicadorDataM="..." ... />
+ * }
+ *
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
+
 public class RadarMultiTag extends BodyTagSupport{
+    /**
+     * Logger para registrar eventos y errores.
+     */
     protected static final Logger logger = Logger.getLogger(RadarMultiTag.class.getName());
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */
     @Getter @Setter
     String idCharts; 
+    /**
+     * Datos para el gráfico de radar múltiple.
+     */
     @Getter @Setter
     private transient Object[] dataValuesM;
+    /**
+     * Posición y tamaño de los indicadores del gráfico.
+     */
     @Getter @Setter
     private transient Object[][] indicadorPositionWH;
+
+    /**
+     * Opacidad del área del gráfico de radar.
+     */
     @Getter @Setter
     double[] areaStyleOpacy;
+    /**
+     * Datos de los indicadores del gráfico de radar múltiple.
+     */
     @Getter @Setter
     private transient Object[] indicadorDataM;
+    /**
+     * Nombres de las leyendas del gráfico.
+     */
     @Getter @Setter
     String[] legendDataName;
+    /**
+     * Título del gráfico.
+     */
     @Getter @Setter
     String chartTitle;
+    /**
+     * Altura del contenedor del gráfico.
+     */
     @Getter @Setter
     public String height = "530px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */
     @Getter @Setter
     public String width = "900px";
-
+    /**
+     * Contexto de la página JSP.
+     */
     private transient PageContext pageContextR;
-
+    /**
+     * Constructor por defecto.
+     */
     public RadarMultiTag() {
     }
+    /**
+     * Constructor con contexto de página.
+     *
+     * @param pageContextxx el contexto de la página JSP.
+     */
     public RadarMultiTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de radar múltiple en la página web.
+     *
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP.
         String theme;
         theme=(String)((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme");
-
+        // Convierte los nombres de las leyendas a formato JSON.
         JSONArray legendDataNameX=new JSONArray(legendDataName);
+        // Convierte los datos del gráfico de radar múltiple a formato JSON.
         JSONArray dataValuesMX=new JSONArray(dataValuesM);
         try {
-
+            // Genera el código HTML y JavaScript para el gráfico de radar múltiple.
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""+
             "<div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 8px;\"></div>\n" +
@@ -70,7 +129,7 @@ public class RadarMultiTag extends BodyTagSupport{
             "                data:legendDataNameX\n" +
             "            },\n" +
             "            radar: [\n");
-            
+            // Agrega las configuraciones de radar.
             for (int i = 0; i < indicadorDataM.length; i++) {
             chartImage.append(""+
             "                {\n" +
@@ -126,7 +185,7 @@ public class RadarMultiTag extends BodyTagSupport{
             "            ]\n" +
             "        });\n" +
             "</script>");
-
+            // Añade el gráfico al contexto de la página.
             pageContextR.getOut().append(chartImage);            
 
         } catch (IOException e) {
@@ -142,7 +201,12 @@ public class RadarMultiTag extends BodyTagSupport{
         }
         return SKIP_BODY; //PUEDE SER 0
     }  
-    
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */  
     @Override
     public int doStartTag() throws JspException {       
         pageContextR=this.pageContext;        

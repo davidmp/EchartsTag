@@ -12,47 +12,106 @@ import static javax.servlet.jsp.tagext.Tag.SKIP_BODY;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-
 /**
- *
- * @author davidmp
+ * La clase {@code Bar3DStackTag} genera un gráfico 3D apilado en ECharts, configurado
+ * mediante diversas opciones de estilo y control de la visualización. Extiende
+ * {@link BodyTagSupport} y permite configurar atributos como el tipo de gráfico,
+ * datos, dimensiones y opciones de rotación.
+ * <p>
+ * Ejemplo de uso en una página JSP:
+ * </p>
+ * <pre>
+ * {@code
+ * <custom:bar3DStackTag idCharts="chartStack" dataValues="..." ... />
+ * }
+ * </pre>
+ * 
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
 public class Bar3DStackTag extends BodyTagSupport{
+    /**
+     * Logger para registrar eventos y errores.
+     */    
     protected static final Logger logger = Logger.getLogger(Bar3DStackTag.class.getName());
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */    
     @Getter @Setter
     String idCharts="main";   
+    /**
+     * Tipo de serie en ECharts (e.g., bar3D,line3D,surface,scatter3D).
+     */    
     @Getter @Setter
     String seriesTypeEchart="bar3D";  /*bar3D,line3D,surface,scatter3D*/
+    /**
+     * Valores de los datos para el gráfico.
+     */    
     @Getter @Setter
     private transient JSONArray dataValues;
+    /**
+     * Estilo de normalidad y énfasis para los elementos gráficos.
+     */    
     @Getter @Setter
     double[] styleNormalEmphasis={0.8,0.4};/*0.2, 0.4*/
+    /**
+     * Ancho y profundidad de la caja 3D.
+     */    
     @Getter @Setter
     int[] grid3DboxWidthDepth={200,80};
+    /**
+     * Controla si la vista se rota automáticamente.
+     */    
     @Getter @Setter
     boolean viewControlAutoRotate=false;
+    /**
+     * Intensidad de la luz en la escena 3D.
+     */    
     @Getter @Setter
     double lightIntensity=0.8;    
-
+    /**
+     * Altura del contenedor del gráfico.
+     */
     @Getter @Setter
-    String height="400px";    
+    String height="400px";  
+    /**
+     * Ancho del contenedor del gráfico.
+     */    
     @Getter @Setter
     String width="600px";  
-    
+    /**
+     * Contexto de la página JSP.
+     */    
     private transient PageContext pageContextR;
-
+    /**
+     * Constructor por defecto.
+     */
     public Bar3DStackTag() {
     }
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */    
     public Bar3DStackTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico 3D apilado en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
-        
+        // Convierte los estilos y dimensiones a JSON para el script.
         JSONArray styleNormalEmphasisx= new JSONArray(styleNormalEmphasis); 
         JSONArray grid3DboxWidthDepthx= new JSONArray(grid3DboxWidthDepth); 
-        try {        
+        try {   
+            // Genera el código HTML y JavaScript para el gráfico
             StringBuilder chartImage = new StringBuilder();
             chartImage.append(""
                     + "      <div id=\"" + idCharts + "\" style=\"height: " + height + "; width: " + width + "; border: 1px solid #ccc; padding: 10px;\"></div>\n" +
@@ -90,6 +149,7 @@ public class Bar3DStackTag extends BodyTagSupport{
                     "            });\n" +
                     "            window.onresize = chart.resize;\n" +
                     "        </script>");
+            // Añade el gráfico al contexto de la página
             pageContextR.getOut().append(chartImage); 
         } catch (IOException e) {
             logger.log(Level.INFO, "Error en generar grafico Bar3dStack: {0}", e.getMessage());        
@@ -104,7 +164,12 @@ public class Bar3DStackTag extends BodyTagSupport{
         }
         return SKIP_BODY; //PUEDE SER 0
     }
-    
+    /**
+     * Método que se llama al iniciar la etiqueta. Inicializa el contexto de la página JSP.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */    
     @Override
     public int doStartTag() throws JspException {        
         pageContextR=this.pageContext;        

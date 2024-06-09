@@ -16,59 +16,105 @@ import lombok.Setter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 /**
+ * La clase {@code BarTag} proporciona una etiqueta personalizada para generar gráficos de barras utilizando la biblioteca ECharts en páginas JSP.
+ * Esta etiqueta permite configurar datos, títulos, orientación del gráfico, dimensiones, y otras propiedades del gráfico.
  *
- * @author davidmp
+ * Ejemplo de uso en JSP:
+ * {@code
+ * <custom:barTag idCharts="barChart" dataLabel="..." dataValuesEjeBase="..." dataValues="..." ... />
+ * }
+ *
+ * @author davidmp et al.
+ * @since 1.0
+ * @see <a href="https://echarts.apache.org/">ECharts</a>
+ * @see BodyTagSupport
  */
-public class BarTag extends BodyTagSupport {
 
+public class BarTag extends BodyTagSupport {
+    /**
+     * Etiquetas de datos.
+     */
     @Getter
     @Setter
     private transient LinkedHashMap<String, Object> dataLabel;
-
+    /**
+     * Valores del eje base en formato array JSON.
+     */
     @Getter
     @Setter
     private transient JSONArray dataValuesEjeBase;
-
+    /**
+     * Valores de los datos en formato JSON.
+     */
     @Getter
     @Setter
     private transient JSONObject dataValues;
-
+    /**
+     * Identificador del div que contendrá el gráfico.
+     */
     @Getter
     @Setter
     public String idCharts;
-
+   /**
+     * Clase CSS para el contenedor del gráfico.
+     */
     @Getter
     @Setter
     public String classCharts;
-
+    /**
+     * Orientación del gráfico de barras (horizontal o vertical).
+     */
     @Getter
     @Setter
     public String orientationChart = "horizontal";
-
+    /**
+     * Altura del contenedor del gráfico.
+     */
     @Getter
     @Setter
     public String height = "400px";
+    /**
+     * Ancho del contenedor del gráfico.
+     */    
     @Getter
     @Setter
     public String width = "400px";
    
-
+    /**
+     * Logger para registrar eventos y errores.
+     */
     protected static final Logger logger = Logger.getLogger(BarTag.class.getName());
-    
+    /**
+     * Contexto de la página JSP.
+     */    
     private transient PageContext pageContextR;
-    public BarTag() throws JspException {     
+    /**
+     * Constructor por defecto.
+     */    
+    public BarTag(){     
     }
+    /**
+     * Constructor con contexto de página.
+     * 
+     * @param pageContextxx el contexto de la página JSP.
+     */    
     public BarTag(PageContext pageContextxx) {
      pageContextR=pageContextxx;
     }
-
+    /**
+     * Método que se llama al finalizar la etiqueta. Genera el código HTML y JavaScript
+     * necesario para renderizar el gráfico de barras en la página web.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */
     @Override
     public int doEndTag() throws JspException {
+        // Obtiene el tema de ECharts desde la sesión HTTP o usa uno predeterminado.
         String theme;
         theme=(String)(((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme")==null? "shine":((HttpServletRequest)pageContextR.getRequest()).getSession().getAttribute("echartstheme"));
-        
+        // Define los nombres de los ejes X e Y según la orientación del gráfico.
         JSONArray dataLabelx = (JSONArray) dataLabel.get("Categoria");
         JSONArray dataLabely = (JSONArray) dataLabel.get("stack");
         JSONArray dataLabelz = (JSONArray) dataLabel.get("position");
@@ -81,6 +127,7 @@ public class BarTag extends BodyTagSupport {
         }
 
         try {
+            // Genera el código HTML y JavaScript para el gráfico de barras.
             StringBuilder chartImage = new StringBuilder();
             String[] elementNames = JSONObject.getNames(dataValues);
 
@@ -176,7 +223,7 @@ public class BarTag extends BodyTagSupport {
                     + "\n"
                     + "                window.onresize = chart.resize;\n"
                     + "        </script>");
-
+            // Añade el gráfico al contexto de la página.
             pageContextR.getOut().append(chartImage); 
 
         } catch (IOException e) {
@@ -192,6 +239,12 @@ public class BarTag extends BodyTagSupport {
         }
         return SKIP_BODY; //PUEDE SER 0
     }
+    /**
+     * Método que se llama al iniciar la etiqueta. Asigna el contexto de la página.
+     * 
+     * @return {@code SKIP_BODY} para indicar que el cuerpo de la etiqueta debe ser ignorado.
+     * @throws JspException si ocurre un error durante la ejecución de la etiqueta.
+     */     
     @Override
     public int doStartTag() throws JspException {        
         pageContextR=this.pageContext;        
